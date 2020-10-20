@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.scan">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_scan"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_scan_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".MainActivity">
+        </activity>
+
+        <activity
+            android:name=".SplashScreen"
+            android:screenOrientation="portrait"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Basics"/>
+        <activity android:name=".Distances"/>
+        <activity android:name=".InputBasics"/>
+        <activity android:name=".InputChiSquareDistribution"/>
+        <activity android:name=".InputDistCorrelation"/>
+        <activity android:name=".InputDistKendall"/>
+        <activity android:name=".InputDistTwoPoint"/>
+        <activity android:name=".InputFrequencyDistribution"/>
+        <activity android:name=".InputLinearRegression"/>
+        <activity android:name=".InputNormalDistri"/>
+        <activity android:name=".InputPieChart"/>
+        <activity android:name=".InputProbAdditionRule"/>
+        <activity android:name=".InputProbBayes"/>
+        <activity android:name=".InputProbBinomial"/>
+        <activity android:name=".InputProbClassic"/>
+        <activity android:name=".InputProbConditional"/>
+        <activity android:name=".InputTtestOne"/>
+        <activity android:name=".Probability"/>
+        <activity android:name=".OutputNumerical"/>
+
+        <activity android:name=".EqFormulas"/>
+        <activity android:name=".EqBasic"/>
+        <activity android:name=".EqProbability"/>
+        <activity android:name=".EqLinearRegression"/>
+        <activity android:name=".EqNormalDistribution"/>
+        <activity android:name=".EqFrequencyDistribution"/>
+        <activity android:name=".EqDistances"/>
+        <activity android:name=".EqDistKendall"/>
+        <activity android:name=".EqDistTwopt"/>
+        <activity android:name=".EqDistCorrelation"/>
+        <activity android:name=".EqPieChart"/>
+        <activity android:name=".EqChiSquare"/>
+        <activity android:name=".EqTtest"/>
+
+    </application>
+
+</manifest>
