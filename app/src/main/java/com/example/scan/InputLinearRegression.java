@@ -32,6 +32,9 @@ public class InputLinearRegression extends AppCompatActivity implements View.OnC
     Menu menu;
     TextView textView;
 
+    ArrayList<Integer> inputX = new ArrayList<>();
+    ArrayList<Integer> inputY = new ArrayList<>();
+
     ArrayList<Model> models = new ArrayList<Model>();
     RecyclerView rvTechSolPoint;
     RvAdapterTwoInputs rvAdapter;
@@ -82,6 +85,20 @@ public class InputLinearRegression extends AppCompatActivity implements View.OnC
         rvTechSolPoint.setAdapter(rvAdapter);
         tvAdd.setOnClickListener(this);
 
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InputLinearRegression.this, OutputLinearRegression.class);
+                Bundle b = new Bundle();
+                b.putIntegerArrayList("output_x", inputX);
+                b.putIntegerArrayList("output_y", inputY);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -107,6 +124,8 @@ public class InputLinearRegression extends AppCompatActivity implements View.OnC
                     model.setValue2(value2);
                     models.add(model);
                     rvAdapter.notifyDataSetChanged();
+                    inputX.add(Integer.valueOf(String.valueOf(etEnterValue.getText())));
+                    inputY.add(Integer.valueOf(String.valueOf(etEnterValue2.getText())));
                 }
                 EditText r1 = findViewById(R.id.et_enter_value);
                 r1.setText("");

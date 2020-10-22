@@ -1,5 +1,14 @@
 package com.example.scan;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,15 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -31,18 +31,20 @@ public class InputDistCorrelation extends AppCompatActivity implements View.OnCl
     Toolbar toolbar;
     Menu menu;
     TextView textView;
+    ArrayList<Integer> inputArrayX1 = new ArrayList<>();
+    ArrayList<Integer> inputArrayY1 = new ArrayList<>();
 
     ArrayList<Model> models = new ArrayList<Model>();
     RecyclerView rvTechSolPoint;
-    RvAdapterFourInputs rvAdapter;
+    RvAdapterTwoInputs rvAdapter;
     Button tvAdd;
-    EditText etEnterValue, etEnterValue2, etEnterValue3,etEnterValue4;
+    EditText etEnterValue, etEnterValue2;
     int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_input_dist_kendall);
+        setContentView(R.layout.activity_input_linear_regression);
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -63,30 +65,39 @@ public class InputDistCorrelation extends AppCompatActivity implements View.OnCl
 
         rvTechSolPoint = findViewById(R.id.rv_list_item);
         tvAdd = findViewById(R.id.tv_add);
-
         etEnterValue = findViewById(R.id.et_enter_value);
         etEnterValue2 = findViewById(R.id.et_enter_value2);
-        etEnterValue3 = findViewById(R.id.et_enter_value3);
-        etEnterValue4 = findViewById(R.id.et_enter_value4);
-
         //tvUpdate = findViewById(R.id.tv_update);
         rvTechSolPoint.setHasFixedSize(true);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.VERTICAL, false);
         rvTechSolPoint.setLayoutManager(layoutManager);
-        rvAdapter = new RvAdapterFourInputs(getApplicationContext(), models,
-                new RvAdapterFourInputs.Onclick() {
+        rvAdapter = new RvAdapterTwoInputs(getApplicationContext(), models,
+                new RvAdapterTwoInputs.Onclick() {
                     @Override
                     public void onEvent(Model model, int pos) {
                         position = pos;
                         //tvUpdate.setVisibility(View.VISIBLE);
                         etEnterValue.setText(model.getValue());
                         etEnterValue2.setText(model.getValue2());
-                        etEnterValue3.setText(model.getValue3());
-                        etEnterValue4.setText(model.getValue4());
                     }
                 });
         rvTechSolPoint.setAdapter(rvAdapter);
         tvAdd.setOnClickListener(this);
+
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InputDistCorrelation.this, OutputNumerical.class);
+                Bundle b = new Bundle();
+                b.putString("formula_type", "dist_correlation");
+                b.putIntegerArrayList("outputX1", inputArrayX1);
+                b.putIntegerArrayList("outputY1", inputArrayY1);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -97,36 +108,22 @@ public class InputDistCorrelation extends AppCompatActivity implements View.OnCl
 
                 String value = etEnterValue.getText().toString();
                 String value2 = etEnterValue2.getText().toString();
-                String value3 = etEnterValue3.getText().toString();
-                String value4 = etEnterValue4.getText().toString();
-
-
                 if(value.equals("")){
-                    Toast.makeText(InputDistCorrelation.this,"Enter Value of X1",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InputDistCorrelation.this,"Enter Value of X",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else if(value2.equals("")){
-                    Toast.makeText(InputDistCorrelation.this,"Enter Value of Y1",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InputDistCorrelation.this,"Enter Value of Y",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                else if(value3.equals("")){
-                    Toast.makeText(InputDistCorrelation.this,"Enter Value of X2",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                else if(value4.equals("")){
-                    Toast.makeText(InputDistCorrelation.this,"Enter Value of Y2",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-
                 else {
                     //insertMethod(String.valueOf(etEnterName.getText()), String.valueOf(etEnterName2.getText()));
 
+                    inputArrayX1.add(Integer.valueOf(value));
+                    inputArrayY1.add(Integer.valueOf(value2));
                     Model model  = new Model();
                     model.setValue(value);
                     model.setValue2(value2);
-                    model.setValue3(value3);
-                    model.setValue4(value4);
                     models.add(model);
                     rvAdapter.notifyDataSetChanged();
                 }
@@ -134,10 +131,6 @@ public class InputDistCorrelation extends AppCompatActivity implements View.OnCl
                 r1.setText("");
                 EditText r2 = findViewById(R.id.et_enter_value2);
                 r2.setText("");
-                EditText r3 = findViewById(R.id.et_enter_value3);
-                r3.setText("");
-                EditText r4 = findViewById(R.id.et_enter_value4);
-                r4.setText("");
 
             }
             break;

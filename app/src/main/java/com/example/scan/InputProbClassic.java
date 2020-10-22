@@ -39,6 +39,9 @@ public class InputProbClassic extends AppCompatActivity implements View.OnClickL
     EditText etEnterValue, etEnterValue2;
     int position;
 
+    ArrayList<Integer> output_x = new ArrayList<>();
+    ArrayList<Integer> output_y = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +86,20 @@ public class InputProbClassic extends AppCompatActivity implements View.OnClickL
         rvTechSolPoint.setAdapter(rvAdapter);
         tvAdd.setOnClickListener(this);
 
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InputProbClassic.this, OutputNumerical.class);
+                Bundle b = new Bundle();
+                b.putString("formula_type", "prob_classic");
+                b.putIntegerArrayList("output_x", output_x);
+                b.putIntegerArrayList("output_y", output_y);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -108,6 +125,8 @@ public class InputProbClassic extends AppCompatActivity implements View.OnClickL
                     model.setValue2(value2);
                     models.add(model);
                     rvAdapter.notifyDataSetChanged();
+                    output_x.add(Integer.valueOf(String.valueOf(etEnterValue.getText())));
+                    output_y.add(Integer.valueOf(String.valueOf(etEnterValue2.getText())));
                 }
                 EditText r1 = findViewById(R.id.et_enter_value);
                 r1.setText("");

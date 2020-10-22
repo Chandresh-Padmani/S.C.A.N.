@@ -62,6 +62,25 @@ public class InputTtestOne extends AppCompatActivity implements NavigationView.O
         etEnterValue2 = findViewById(R.id.et_enter_value2);
         etEnterValue3 = findViewById(R.id.et_enter_value3);
         etEnterValue4 = findViewById(R.id.et_enter_value4);
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Integer m = Integer.valueOf(String.valueOf(etEnterValue.getText()));
+                Integer u = Integer.valueOf(String.valueOf(etEnterValue2.getText()));
+                Integer s = Integer.valueOf(String.valueOf(etEnterValue3.getText()));
+                Integer n = Integer.valueOf(String.valueOf(etEnterValue4.getText()));
+                Intent intent = new Intent(InputTtestOne.this, OutputNumerical.class);
+                Bundle b = new Bundle();
+                b.putString("formula_type", "TTestOne");
+                b.putInt("output", m);
+                b.putInt("output", u);
+                b.putInt("output", s);
+                b.putInt("output", n);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
 
 
     }

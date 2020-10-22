@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,8 +29,8 @@ public class InputDistTwoPoint extends AppCompatActivity implements NavigationVi
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-
-    EditText etEnterValue, etEnterValue2;
+    Button btnCalc;
+    EditText etEnterValue, etEnterValue2, etEnterValue3, etEnterValue4;
 
 
     @Override
@@ -55,8 +57,51 @@ public class InputDistTwoPoint extends AppCompatActivity implements NavigationVi
 
         etEnterValue = findViewById(R.id.et_enter_value);
         etEnterValue2 = findViewById(R.id.et_enter_value2);
+        etEnterValue3 = findViewById(R.id.et_enter_value3);
+        etEnterValue4 = findViewById(R.id.et_enter_value4);
+
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btnCalc: {
+
+                        String value = etEnterValue.getText().toString();
+                        String value2 = etEnterValue2.getText().toString();
+                        String value3 = etEnterValue3.getText().toString();
+                        String value4 = etEnterValue4.getText().toString();
+                        if (value.equals("")) {
+                            Toast.makeText(InputDistTwoPoint.this, "Enter Value of X1", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value2.equals("")) {
+                            Toast.makeText(InputDistTwoPoint.this, "Enter Value of Y1", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value3.equals("")) {
+                            Toast.makeText(InputDistTwoPoint.this, "Enter Value of X2", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value4.equals("")) {
+                            Toast.makeText(InputDistTwoPoint.this, "Enter Value of Y2", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            Intent intent = new Intent(InputDistTwoPoint.this, OutputNumerical.class);
+                            Bundle b = new Bundle();
+                            b.putString("formula_type", "dist_two_point");
+                            b.putInt("x1", Integer.valueOf(value));
+                            b.putInt("y1", Integer.valueOf(value2));
+                            b.putInt("x2", Integer.valueOf(value3));
+                            b.putInt("y2", Integer.valueOf(value4));
+                            intent.putExtras(b);
+                            startActivity(intent);
+
+                        }
+                    }
+                }
+            }
+        });
 
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

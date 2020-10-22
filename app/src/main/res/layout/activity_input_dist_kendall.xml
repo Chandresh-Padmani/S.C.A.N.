@@ -11,6 +11,7 @@
     tools:openDrawer="start">
 
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -37,9 +38,10 @@
 
                 <RelativeLayout
                     android:id="@+id/relativeLyt1"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg7">
+                    android:background="@drawable/bg7"
+                    >
 
                     <TextView
                         android:id="@+id/txt"
@@ -48,21 +50,22 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/nunito_regular"
                         android:gravity="center"
-                        android:text="Enter the all value"
+                        android:text="Enter m (Event Occurance) and N (Total)"
                         android:textColor="#642B73"
-                        android:textSize="20sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
-
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="230dp"
+                        android:layout_height="130dp"
+                        android:gravity="center"
                         android:layout_below="@id/txt">
 
                         <RelativeLayout
                             android:id="@+id/relayout1"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp">
+                            android:gravity="center"
+                            android:layout_height="70dp">
 
                             <TextView
                                 android:id="@+id/tv1"
@@ -71,13 +74,13 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentBottom="true"
-                                android:layout_marginStart="37dp"
-                                android:layout_marginLeft="37dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginBottom="25dp"
-                                android:text="x1 = "
+                                android:layout_marginBottom="24dp"
+                                android:text="x = "
                                 android:textColor="#000"
-                                android:textSize="20sp" />
+                                android:textSize="18sp" />
 
                             <EditText
                                 android:id="@+id/et_enter_value"
@@ -86,28 +89,27 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentBottom="true"
-                                android:layout_marginStart="80dp"
-                                android:layout_marginLeft="80dp"
+                                android:layout_marginStart="48dp"
+                                android:layout_marginLeft="48dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginBottom="17dp"
+                                android:layout_marginBottom="14dp"
                                 android:hint="new value"
                                 android:inputType="number"
-                                android:textSize="15sp" />
+                                android:textSize="16sp" />
 
                             <TextView
-                                android:id="@+id/tv2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentBottom="true"
-                                android:layout_marginStart="200dp"
-                                android:layout_marginLeft="200dp"
+                                android:layout_marginStart="170dp"
+                                android:layout_marginLeft="170dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginBottom="25dp"
-                                android:text="y1 = "
+                                android:layout_marginBottom="24dp"
+                                android:text="y = "
                                 android:textColor="#000"
-                                android:textSize="20sp" />
+                                android:textSize="18sp" />
 
                             <EditText
                                 android:id="@+id/et_enter_value2"
@@ -116,99 +118,28 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_alignParentLeft="true"
                                 android:layout_alignParentBottom="true"
-                                android:layout_marginStart="242dp"
-                                android:layout_marginLeft="242dp"
+                                android:layout_marginStart="195dp"
+                                android:layout_marginLeft="195dp"
                                 android:layout_marginTop="10dp"
-                                android:layout_marginBottom="17dp"
+                                android:layout_marginBottom="14dp"
                                 android:hint="new value"
                                 android:inputType="number"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
+                                android:textSize="16sp" />
 
+                        </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/relayout2"
                             android:layout_below="@id/relayout1"
                             android:layout_width="match_parent"
-                            android:layout_height="80dp">
-
-                            <TextView
-                                android:id="@+id/tv3"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginStart="37dp"
-                                android:layout_marginLeft="37dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="25dp"
-                                android:text="x2 = "
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                            <EditText
-                                android:id="@+id/et_enter_value3"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginStart="80dp"
-                                android:layout_marginLeft="80dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="17dp"
-                                android:hint="new value"
-                                android:inputType="number"
-                                android:textSize="15sp" />
-
-                            <TextView
-                                android:id="@+id/tv4"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginStart="200dp"
-                                android:layout_marginLeft="200dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="25dp"
-                                android:text="y2 = "
-                                android:textColor="#000"
-                                android:textSize="20sp" />
-
-                            <EditText
-                                android:id="@+id/et_enter_value4"
-                                android:layout_width="80dp"
-                                android:layout_height="wrap_content"
-                                android:layout_alignParentStart="true"
-                                android:layout_alignParentLeft="true"
-                                android:layout_alignParentBottom="true"
-                                android:layout_marginStart="242dp"
-                                android:layout_marginLeft="242dp"
-                                android:layout_marginTop="10dp"
-                                android:layout_marginBottom="17dp"
-                                android:hint="new value"
-                                android:inputType="number"
-                                android:textSize="15sp" />
-                        </RelativeLayout>
-
-
-
-                        <RelativeLayout
-                            android:id="@+id/relayout3"
-                            android:layout_below="@id/relayout2"
-                            android:layout_width="match_parent"
                             android:gravity="center"
-                            android:layout_height="70dp">
+                            android:layout_height="50dp">
 
                             <Button
                                 android:id="@+id/tv_add"
-                                android:layout_width="wrap_content"
-                                android:layout_height="50dp"
-                                android:layout_alignParentTop="true"
-                                android:layout_marginTop="12dp"
-                                android:layout_marginBottom="5dp"
+                                android:layout_width="70dp"
+                                android:layout_height="40dp"
+                                android:padding="5dp"
                                 android:background="@drawable/ripple_effect"
                                 android:fontFamily="@font/my_nunito"
                                 android:gravity="center"
@@ -226,9 +157,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_list_item"
                     android:layout_width="match_parent"
-                    android:layout_height="380dp"
+                    android:layout_height="350dp"
                     android:layout_below="@id/relativeLyt1"
-                    android:layout_marginTop="5dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:background="#fff"
@@ -239,21 +169,19 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
+                    android:layout_height="80dp"
                     android:layout_below="@id/rv_list_item"
-                    android:layout_height="137dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
                     android:background="@drawable/bg7">
 
                     <Button
                         android:id="@+id/btnCalc"
-                        android:layout_width="match_parent"
+                        android:layout_width="250dp"
                         android:layout_height="50dp"
-                        android:layout_alignParentTop="true"
                         android:layout_marginLeft="30dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="20dp"
                         android:background="@drawable/ripple_effect"
                         android:fontFamily="@font/my_nunito"
                         android:text="Calculate"
@@ -261,14 +189,9 @@
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
-
                 </RelativeLayout>
-
             </RelativeLayout>
         </ScrollView>
-
-
-
 
 
 

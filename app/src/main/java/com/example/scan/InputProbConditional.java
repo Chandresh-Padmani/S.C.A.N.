@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,7 +27,7 @@ public class InputProbConditional extends AppCompatActivity implements Navigatio
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-
+    EditText etEnterValue, etEnterValue2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +49,40 @@ public class InputProbConditional extends AppCompatActivity implements Navigatio
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+        etEnterValue = findViewById(R.id.et_enter_value);
+        etEnterValue2 = findViewById(R.id.et_enter_value2);
+
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btnCalc: {
+
+                        String value = etEnterValue.getText().toString();
+                        String value2 = etEnterValue2.getText().toString();
+                        if (value.equals("")) {
+                            Toast.makeText(InputProbConditional.this, "Enter Value of P(A B)", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value2.equals("")) {
+                            Toast.makeText(InputProbConditional.this, "Enter Value of P(A)", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            Intent intent = new Intent(InputProbConditional.this, OutputNumerical.class);
+                            Bundle b = new Bundle();
+                            b.putString("formula_type", "prob_conditional");
+                            b.putDouble("prob_a_int_b", Integer.valueOf(value));
+                            b.putDouble("prob_a", Integer.valueOf(value2));
+                            intent.putExtras(b);
+                            startActivity(intent);
+
+                        }
+                    }
+                }
+            }
+        });
+
+
     }
 
     @Override
@@ -92,4 +129,5 @@ public class InputProbConditional extends AppCompatActivity implements Navigatio
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

@@ -31,7 +31,7 @@ public class InputPieChart extends AppCompatActivity implements View.OnClickList
     Toolbar toolbar;
     Menu menu;
     TextView textView;
-
+    ArrayList<Integer> inputArray = new ArrayList<>();
     ArrayList<Model> models = new ArrayList<Model>();
     RecyclerView rvTechSolPoint;
     RvAdapterOneInput rvAdapter;
@@ -79,6 +79,20 @@ public class InputPieChart extends AppCompatActivity implements View.OnClickList
                 });
         rvTechSolPoint.setAdapter(rvAdapter);
         tvAdd.setOnClickListener(this);
+
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(InputPieChart.this, OutputPieChart.class);
+                Bundle b = new Bundle();
+                b.putString("formula_type", "pie_chart");
+                b.putIntegerArrayList("output", inputArray);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onClick(View view) {
@@ -94,6 +108,7 @@ public class InputPieChart extends AppCompatActivity implements View.OnClickList
                     model.setValue(value);
                     models.add(model);
                     rvAdapter.notifyDataSetChanged();
+                    inputArray.add(Integer.valueOf(value));
                     //insertMethod(String.valueOf(etEnterValue.getText()));
                 }
                 EditText r1 = findViewById(R.id.et_enter_value);

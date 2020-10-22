@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ public class InputProbAdditionRule extends AppCompatActivity implements Navigati
     Toolbar toolbar;
     Menu menu;
     TextView textView;
+    EditText etEnterValue, etEnterValue2, etEnterValue3;
+    Button btnCalc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,44 @@ public class InputProbAdditionRule extends AppCompatActivity implements Navigati
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+
+        etEnterValue = findViewById(R.id.et_enter_value);
+        etEnterValue2 = findViewById(R.id.et_enter_value2);
+        etEnterValue3 = findViewById(R.id.et_enter_value3);
+
+        Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+        btnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btnCalc: {
+
+                        String value = etEnterValue.getText().toString();
+                        String value2 = etEnterValue2.getText().toString();
+                        String value3 = etEnterValue3.getText().toString();
+                        if (value.equals("")) {
+                            Toast.makeText(InputProbAdditionRule.this, "Enter Value of P(A)", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value2.equals("")) {
+                            Toast.makeText(InputProbAdditionRule.this, "Enter Value of P(B)", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else if (value3.equals("")) {
+                            Toast.makeText(InputProbAdditionRule.this, "Enter Value of P(A B)", Toast.LENGTH_SHORT).show();
+                            return;
+                        } else {
+                            Intent intent = new Intent(InputProbAdditionRule.this, OutputNumerical.class);
+                            Bundle b = new Bundle();
+                            b.putString("formula_type", "prob_addition_rule");
+                            b.putDouble("prob_a", Integer.valueOf(value));
+                            b.putDouble("prob_b", Integer.valueOf(value2));
+                            b.putDouble("prob_a_int_b", Integer.valueOf(value3));
+                            intent.putExtras(b);
+                            startActivity(intent);
+                        }
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -92,4 +135,5 @@ public class InputProbAdditionRule extends AppCompatActivity implements Navigati
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
 }

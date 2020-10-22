@@ -58,6 +58,24 @@ public class InputNormalDistri extends AppCompatActivity implements NavigationVi
                 etEnterValue = findViewById(R.id.et_enter_value);
                 etEnterValue2 = findViewById(R.id.et_enter_value2);
                 etEnterValue3 = findViewById(R.id.et_enter_value3);
+                Button btnCalculator = (Button) findViewById(R.id.btnCalc);
+
+                btnCalculator.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                                Integer x = Integer.valueOf(String.valueOf(etEnterValue.getText()));
+                                Integer u = Integer.valueOf(String.valueOf(etEnterValue2.getText()));
+                                Integer s = Integer.valueOf(String.valueOf(etEnterValue3.getText()));
+                                Intent intent = new Intent(InputNormalDistri.this, OutputNumerical.class);
+                                Bundle b = new Bundle();
+                                b.putString("formula_type", "NormalDistri");
+                                b.putInt("x", x);
+                                b.putInt("u", u);
+                                b.putInt("s", s);
+                                intent.putExtras(b);
+                                startActivity(intent);
+                        }
+                });
 
         }
 

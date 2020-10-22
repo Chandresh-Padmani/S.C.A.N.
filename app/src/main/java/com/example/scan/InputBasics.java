@@ -95,7 +95,7 @@ public class InputBasics extends AppCompatActivity implements View.OnClickListen
 
                 Intent intent = new Intent(InputBasics.this, OutputNumerical.class);
                 b = new Bundle();
-                b.putString("answer_string", ans);
+                b.putString("formula_type", ans);
                 b.putIntegerArrayList("output", inputArray);
                 intent.putExtras(b);
                 startActivity(intent);
