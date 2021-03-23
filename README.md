@@ -86,7 +86,7 @@ Source code for Statistical Calculator for ANalysis (S.C.A.N.)
       <br/>
       <a href='https://github.com/anjalilmehta'> Anjali Mehta </a>
       <br/>
-      <a href='https://github.com/Rain1213'> Raghav Modi </a>
+      <a href='https://github.com/RaghavModi'> Raghav Modi </a>
       <br/>
       <a href='https://github.com/edgeemperor'> Priya Nayak </a>
       <br/>
